@@ -42,12 +42,12 @@ RUN ibmcloud plugin install code-engine -f
 # -----------------------------------------------------------
 # Copy script into container
 # -----------------------------------------------------------
-COPY job1-provision-snapshot-restore.sh /job1-provision-snapshot-restore.sh
+COPY job1-provision-lpar.sh /job1-provision-lpar.sh
 
 # Normalize line endings + ensure script is executable
-RUN sed -i 's/\r$//' /job1-provision-snapshot-restore.sh && chmod +x /job1-provision-snapshot-restore.sh
+RUN sed -i 's/\r$//' /job1-provision-lpar.sh && chmod +x /job1-provision-lpar.sh
 
 # -----------------------------------------------------------
 # Run the script
 # -----------------------------------------------------------
-CMD ["/job1-provision-snapshot-restore.sh"]
+CMD ["/job1-provision-lpar.sh"]
