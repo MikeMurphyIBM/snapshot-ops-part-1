@@ -585,13 +585,29 @@ echo "→ Extracting volume information from snapshot..."
 
 SNAPSHOT_DETAIL=$(ibmcloud pi instance snapshot get "$SNAPSHOT_ID" --json)
 
-# Parse volume IDs from snapshot
-SOURCE_VOLUME_IDS=$(echo "$SNAPSHOT_DETAIL" \
-    | jq -r '.volumeSnapshots[]?.volumeID // empty' \
-    | paste -sd "," -)
+# Debug: Show the actual JSON structure
+echo "  Debug: Snapshot JSON structure..."
+echo "$SNAPSHOT_DETAIL" | jq '.' || echo "  Could not parse JSON"
+
+# Parse volume IDs from snapshot - handle multiple possible structures
+# The snapshot detail might have volumeSnapshots as an array or as nested objects
+SOURCE_VOLUME_IDS=$(echo "$SNAPSHOT_DETAIL" | jq -r '
+    if .volumeSnapshots then
+        if (.volumeSnapshots | type) == "array" then
+            .volumeSnapshots[] | .volumeID? // .volumeId? // empty
+        else
+            .volumeSnapshots | to_entries[] | .value.volumeID? // .value.volumeId? // empty
+        fi
+    else
+        empty
+    end
+' | paste -sd "," -)
 
 if [[ -z "$SOURCE_VOLUME_IDS" ]]; then
     echo "✗ ERROR: No volumes found in snapshot"
+    echo ""
+    echo "Snapshot detail (for debugging):"
+    echo "$SNAPSHOT_DETAIL" | jq '.'
     exit 1
 fi
 
