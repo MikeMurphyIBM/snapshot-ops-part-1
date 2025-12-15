@@ -385,12 +385,12 @@ trap - ERR
 #   3. Capture and validate jobrun submission
 ################################################################################
 echo "========================================================================"
-echo " OPTIONAL STAGE: CHAIN TO SNAPSHOT/ATTACH PROCESS"
+echo " OPTIONAL STAGE: CHAIN TO VOLUME CLONEPROCESS"
 echo "========================================================================"
 echo ""
 
 if [[ "${RUN_ATTACH_JOB:-No}" == "Yes" ]]; then
-    echo "→ RUN_ATTACH_JOB=Yes detected - triggering Job 2..."
+    echo "→ Proceed to Volume Cloning=Yes detected - triggering Job 2..."
     
     echo "  Switching to Code Engine project: IBMi..."
     ibmcloud ce project target --name IBMi > /dev/null 2>&1 || {
@@ -398,11 +398,11 @@ if [[ "${RUN_ATTACH_JOB:-No}" == "Yes" ]]; then
         exit 1
     }
     
-    echo "  Submitting Code Engine job: job2-clone-restore..."
+    echo "  Submitting Code Engine job: snap-ops-2..."
     
     # Capture full output (stdout + stderr)
     RAW_SUBMISSION=$(ibmcloud ce jobrun submit \
-        --job job2-clone-restore \
+        --job snap-ops-2 \
         --output json 2>&1)
     
     # Extract jobrun name from response
@@ -419,7 +419,7 @@ if [[ "${RUN_ATTACH_JOB:-No}" == "Yes" ]]; then
     echo "✓ Job 2 triggered successfully"
     echo "  Jobrun instance: ${NEXT_RUN}"
 else
-    echo "→ RUN_ATTACH_JOB not set - skipping Job 2"
+    echo "→ Proceed to Volume Cloning not set - skipping Job 2"
     echo "  The LPAR will remain in ${STATUS} state"
     echo "  Ready for manual volume attachment and OS startup"
 fi
