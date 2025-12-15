@@ -390,7 +390,7 @@ echo "========================================================================"
 echo ""
 
 if [[ "${RUN_ATTACH_JOB:-No}" == "Yes" ]]; then
-    echo "→ Proceed to Volume Cloning=Yes detected - triggering Job 2..."
+    echo "→ Proceed to Volume Cloning has been requested - triggering Job 2..."
     
     echo "  Switching to Code Engine project: IBMi..."
     ibmcloud ce project target --name IBMi > /dev/null 2>&1 || {
@@ -416,7 +416,7 @@ if [[ "${RUN_ATTACH_JOB:-No}" == "Yes" ]]; then
         exit 1
     fi
     
-    echo "✓ Job 2 triggered successfully"
+    echo "✓ Volume Cloning triggered successfully"
     echo "  Jobrun instance: ${NEXT_RUN}"
 else
     echo "→ Proceed to Volume Cloning not set - skipping Job 2"
