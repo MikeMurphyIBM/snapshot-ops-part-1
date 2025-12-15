@@ -54,7 +54,7 @@ readonly PRIVATE_IP="192.168.0.69"
 readonly KEYPAIR_NAME="murphy-clone-key"
 
 # LPAR Specifications
-readonly LPAR_NAME="manhattan"
+readonly LPAR_NAME="empty-ibmi-lpar"
 readonly MEMORY_GB=2
 readonly PROCESSORS=0.25
 readonly PROC_TYPE="shared"
