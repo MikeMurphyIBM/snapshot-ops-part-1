@@ -398,11 +398,11 @@ if [[ "${RUN_ATTACH_JOB:-No}" == "Yes" ]]; then
         exit 1
     }
     
-    echo "  Submitting Code Engine job: prod-snap..."
+    echo "  Submitting Code Engine job: job2-clone-restore..."
     
     # Capture full output (stdout + stderr)
     RAW_SUBMISSION=$(ibmcloud ce jobrun submit \
-        --job prod-snap \
+        --job job2-clone-restore \
         --output json 2>&1)
     
     # Extract jobrun name from response
