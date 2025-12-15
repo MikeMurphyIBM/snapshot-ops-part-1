@@ -369,7 +369,7 @@ echo "  Subnet:          ${SUBNET_ID}"
 echo ""
 echo "  Next Steps:"
 echo "  - LPAR is in ${STATUS} state and ready for volume attachment"
-echo "  - Run Job 2 (snapshot/attach) to restore OS and data"
+echo "  - Run Job 2 (volume cloning) to restore OS and data"
 echo ""
 echo "========================================================================"
 echo ""
@@ -385,7 +385,7 @@ trap - ERR
 #   3. Capture and validate jobrun submission
 ################################################################################
 echo "========================================================================"
-echo " OPTIONAL STAGE: CHAIN TO VOLUME CLONEPROCESS"
+echo " OPTIONAL STAGE: CHAIN TO VOLUME CLONE PROCESS"
 echo "========================================================================"
 echo ""
 
