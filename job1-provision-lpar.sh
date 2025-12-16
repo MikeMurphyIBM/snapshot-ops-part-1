@@ -44,17 +44,17 @@ readonly REGION="us-south"
 readonly RESOURCE_GROUP="Default"
 
 # PowerVS Workspace Configuration
-readonly PVS_CRN="crn:v1:bluemix:public:power-iaas:dal10:a/21d74dd4fe814dfca20570bbb93cdbff:cc84ef2f-babc-439f-8594-571ecfcbe57a::"
-readonly CLOUD_INSTANCE_ID="cc84ef2f-babc-439f-8594-571ecfcbe57a"
+readonly PVS_CRN="crn:v1:bluemix:public:power-iaas:dal10:a/db1a8b544a184fd7ac339c243684a9b7:973f4d55-9056-4848-8ed0-4592093161d2::" #workspace crn
+readonly CLOUD_INSTANCE_ID="973f4d55-9056-4848-8ed0-4592093161d2" #workspace ID
 readonly API_VERSION="2024-02-28"
 
 # Network Configuration
-readonly SUBNET_ID="ca78b0d5-f77f-4e8c-9f2c-545ca20ff073"
+readonly SUBNET_ID="4bc0ea5a-f5b5-4874-9e41-891c147ff0a8"
 readonly PRIVATE_IP="192.168.0.69"
-readonly KEYPAIR_NAME="murphy-clone-key"
+readonly KEYPAIR_NAME="murph2"
 
 # LPAR Specifications
-readonly LPAR_NAME="empty-ibmi-lpar"
+readonly LPAR_NAME="murphy-prod-clone"
 readonly MEMORY_GB=2
 readonly PROCESSORS=0.25
 readonly PROC_TYPE="shared"
