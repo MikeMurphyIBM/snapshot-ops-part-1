@@ -395,7 +395,7 @@ if [[ "${RUN_ATTACH_JOB:-No}" == "Yes" ]]; then
     echo " targeting new resource group.."
     ibmcloud target -g cloud-techsales
     
-    echo "  Switching to Code Engine project: IBMi..."
+    echo "  Switching to Code Engine project: usnm-project..."
     ibmcloud ce project target --name usnm-project > /dev/null 2>&1 || {
         echo "✗ ERROR: Unable to target Code Engine project 'usnm-project'"
         exit 1
