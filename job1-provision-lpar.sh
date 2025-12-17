@@ -205,6 +205,39 @@ echo ""
 echo "→ Building LPAR configuration payload..."
 
 # Construct JSON payload for LPAR creation
+# Added "ibmiCss": true to enable IBM i Cloud Storage Solutions license
+PAYLOAD=$(cat <<EOF
+{
+  "serverName": "${LPAR_NAME}",
+  "processors": ${PROCESSORS},
+  "memory": ${MEMORY_GB},
+  "procType": "${PROC_TYPE}",
+  "sysType": "${SYS_TYPE}",
+  "imageID": "${IMAGE_ID}",
+  "deploymentType": "${DEPLOYMENT_TYPE}",
+  "ibmiCss": true,
+  "keyPairName": "${KEYPAIR_NAME}",
+  "networks": [
+    {
+      "networkID": "${SUBNET_ID}",
+      "ipAddress": "${PRIVATE_IP}"
+    }
+  ]
+}
+EOF
+)
+
+API_URL="https://${REGION}.power-iaas.cloud.ibm.com/pcloud/v1/cloud-instances/${CLOUD_INSTANCE_ID}/pvm-instances?version=${API_VERSION}"
+
+echo "→ Submitting LPAR creation request to PowerVS API..."
+
+# Retry logic for API resilience
+ATTEMPTS=0
+MAX_ATTEMPTS=3
+
+: << Comment
+
+# Construct JSON payload for LPAR creation
 PAYLOAD=$(cat <<EOF
 {
   "serverName": "${LPAR_NAME}",
@@ -232,6 +265,7 @@ echo "→ Submitting LPAR creation request to PowerVS API..."
 # Retry logic for API resilience
 ATTEMPTS=0
 MAX_ATTEMPTS=3
+Comment
 
 while [[ $ATTEMPTS -lt $MAX_ATTEMPTS && -z "$LPAR_INSTANCE_ID" ]]; do
     ATTEMPTS=$((ATTEMPTS + 1))
