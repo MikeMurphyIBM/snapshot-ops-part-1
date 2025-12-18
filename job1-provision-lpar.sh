@@ -257,6 +257,7 @@ PAYLOAD=$(cat <<EOF
 }
 EOF
 )
+comment
 
 API_URL="https://${REGION}.power-iaas.cloud.ibm.com/pcloud/v1/cloud-instances/${CLOUD_INSTANCE_ID}/pvm-instances?version=${API_VERSION}"
 
@@ -265,7 +266,7 @@ echo "→ Submitting LPAR creation request to PowerVS API..."
 # Retry logic for API resilience
 ATTEMPTS=0
 MAX_ATTEMPTS=3
-Comment
+
 
 while [[ $ATTEMPTS -lt $MAX_ATTEMPTS && -z "$LPAR_INSTANCE_ID" ]]; do
     ATTEMPTS=$((ATTEMPTS + 1))
