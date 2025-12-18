@@ -49,8 +49,8 @@ readonly CLOUD_INSTANCE_ID="973f4d55-9056-4848-8ed0-4592093161d2" #workspace ID
 readonly API_VERSION="2024-02-28"
 
 # Network Configuration
-readonly SUBNET_ID="4bc0ea5a-f5b5-4874-9e41-891c147ff0a8"
-readonly PRIVATE_IP="192.168.0.69"
+readonly SUBNET_ID="9b9c414e-aa95-41aa-8ed2-40141e0c42fd"
+readonly PRIVATE_IP="192.168.10.35"
 readonly KEYPAIR_NAME="murph2"
 
 # LPAR Specifications
