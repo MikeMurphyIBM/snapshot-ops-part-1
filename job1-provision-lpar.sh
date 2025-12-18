@@ -203,6 +203,7 @@ echo "========================================================================"
 echo ""
 
 echo "→ Building LPAR configuration payload..."
+echo "PAYLOAD"
 
 # Construct JSON payload for LPAR creation
 # Added "ibmiCss": true to enable IBM i Cloud Storage Solutions license
